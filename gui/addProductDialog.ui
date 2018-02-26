@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addProductWidget</class>
- <widget class="QWidget" name="addProductWidget">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>409</width>
-    <height>248</height>
+    <width>468</width>
+    <height>324</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="windowTitle">
-   <string>Просто добавь продукт</string>
+   <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
-   <property name="sizeConstraint">
-    <enum>QLayout::SetDefaultConstraint</enum>
-   </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_3">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="sizeConstraint">
       <enum>QLayout::SetMinimumSize</enum>
      </property>
      <item>
-      <layout class="QFormLayout" name="formLayout_2">
+      <layout class="QFormLayout" name="formLayout">
        <property name="sizeConstraint">
         <enum>QLayout::SetMinimumSize</enum>
        </property>
@@ -43,7 +34,7 @@
         <number>6</number>
        </property>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="label_1">
          <property name="text">
           <string>Название:</string>
          </property>
@@ -58,12 +49,12 @@
           </sizepolicy>
          </property>
          <property name="maxLength">
-          <number>60</number>
+          <number>50</number>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Калорийность:</string>
          </property>
@@ -72,12 +63,12 @@
        <item row="2" column="1">
         <widget class="QLineEdit" name="caloricity">
          <property name="maxLength">
-          <number>4</number>
+          <number>7</number>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Белки:</string>
          </property>
@@ -86,12 +77,12 @@
        <item row="3" column="1">
         <widget class="QLineEdit" name="proteins">
          <property name="maxLength">
-          <number>4</number>
+          <number>7</number>
          </property>
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Жиры:</string>
          </property>
@@ -100,28 +91,56 @@
        <item row="4" column="1">
         <widget class="QLineEdit" name="fats">
          <property name="maxLength">
-          <number>4</number>
+          <number>7</number>
          </property>
         </widget>
        </item>
        <item row="5" column="0">
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="label_5">
          <property name="text">
           <string>Углеводы:</string>
          </property>
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="carbohydrates">
+        <widget class="QLineEdit" name="carbohydrate">
          <property name="maxLength">
-          <number>4</number>
+          <number>7</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Вес упаковки</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Вес штуки</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="weightOfPack">
+         <property name="maxLength">
+          <number>7</number>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="weightOfPeace">
+         <property name="maxLength">
+          <number>7</number>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
@@ -155,32 +174,6 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>productName</tabstop>
-  <tabstop>caloricity</tabstop>
-  <tabstop>proteins</tabstop>
-  <tabstop>fats</tabstop>
-  <tabstop>carbohydrates</tabstop>
-  <tabstop>addButton</tabstop>
-  <tabstop>delButton</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>productName</tabstop>
-  <tabstop>lineEdit_2</tabstop>
-  <tabstop>caloricity</tabstop>
-  <tabstop>proteins</tabstop>
-  <tabstop>fats</tabstop>
-  <tabstop>carbohydrates</tabstop>
-  <tabstop>addButton</tabstop>
-  <tabstop>productName_2</tabstop>
-  <tabstop>caloricity_2</tabstop>
-  <tabstop>proteins_2</tabstop>
-  <tabstop>fats_2</tabstop>
-  <tabstop>carbohydrates_2</tabstop>
-  <tabstop>addButton_2</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>
