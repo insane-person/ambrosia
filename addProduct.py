@@ -4,41 +4,30 @@ from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp
 from addProductDialog import Ui_Dialog
 
-app = QApplication(sys.argv)
-window = QDialog()
-ui = Ui_Dialog()
-ui.setupUi(window)
 
-regexpForInt = QRegExp("\d{1,4}[.,]{1,1}\d{0,2}")
+class AddProduct(QDialog, Ui_Dialog):
+    def __init__(self):
+        QDialog.__init__(self)
+        self.setupUi(self)
+        self.setWindowTitle("Редактирование продукта")
 
+        regexp_for_int = QRegExp("\d{1,4}[.,]{1,1}\d{0,2}")
+        int_validator = QRegExpValidator(regexp_for_int)
+        self.caloricity.setValidator(int_validator)
+        self.proteins.setValidator(int_validator)
+        self.fats.setValidator(int_validator)
+        self.carbohydrate.setValidator(int_validator)
+        self.weightOfPack.setValidator(int_validator)
+        self.weightOfPeace.setValidator(int_validator)
 
-caloricityInt = QRegExpValidator(regexpForInt)
-proteinsInt = QRegExpValidator(regexpForInt)
-fatsInt = QRegExpValidator(regexpForInt)
-carbohydrateInt = QRegExpValidator(regexpForInt)
-weightOfPackInt = QRegExpValidator(regexpForInt)
-weightOfPeaceInt = QRegExpValidator(regexpForInt)
+        regexp_name = QRegExp("(\w{1,40}[ ]?)*")
+        name_validator = QRegExpValidator(regexp_name)
+        self.productName.setValidator(name_validator)
 
-
-ui.caloricity.setValidator(caloricityInt)
-ui.proteins.setValidator(proteinsInt)
-ui.fats.setValidator(fatsInt)
-ui.carbohydrate.setValidator(carbohydrateInt)
-
-ui.weightOfPack.setValidator(weightOfPackInt)
-ui.weightOfPeace.setValidator(weightOfPeaceInt)
-
-regexpForName = QRegExp("(\w{1,40}[ ]?)*")
-nameValidator = QRegExpValidator(regexpForName)
-ui.productName.setValidator(nameValidator)
-
-class AddProduct(Ui_Dialog):
+        self.show()
 
 
-
-
-
-if __name__ == '__main__':
-    window.show()
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    main_window = AddProduct()
     sys.exit(app.exec_())
-
