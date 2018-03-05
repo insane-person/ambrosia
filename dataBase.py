@@ -12,8 +12,8 @@ class Product(db.Entity):
     proteins = Required(Decimal, default=0)
     fats = Required(Decimal, default=0)
     carbohydrates = Required(Decimal, default=0)
-    weightOfPack = Optional(Decimal)
-    weightOfPiece = Optional(Decimal)
+    weightOfPack = Required(Decimal)
+    weightOfPiece = Required(Decimal)
     dish = Set("ProductInDish")
 
 
@@ -26,7 +26,7 @@ class ProductInDish(db.Entity):
     dishName = Required(Dish)
     productName = Required(Product)
     weight = Required(Decimal, default=0)
-    piece = Optional(Decimal)
+    piece = Required(Decimal)
     PrimaryKey(dishName, productName)
 
 
@@ -104,12 +104,13 @@ def print_product_in_dishes():
     print(select(p for p in ProductInDish).show())
 
 
-print("\nтаблица продуктов:")
-print_products()
+if __name__ == "__main__":
+    print("\nтаблица продуктов:")
+    print_products()
 
-print("\nтаблица блюд:")
-print_dishes()
+    print("\nтаблица блюд:")
+    print_dishes()
 
-print("\nтаблица состава:")
-print_product_in_dishes()
+    print("\nтаблица состава:")
+    print_product_in_dishes()
 
