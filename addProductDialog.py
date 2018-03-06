@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'addProductDialog.ui'
+# Form implementation generated from reading ui file 'gui/addProductDialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.10
 #
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(480, 320)
+        Dialog.resize(356, 235)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(Dialog)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.verticalLayout = QtWidgets.QVBoxLayout()
@@ -31,7 +31,10 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.productName.sizePolicy().hasHeightForWidth())
         self.productName.setSizePolicy(sizePolicy)
+        self.productName.setInputMask("")
+        self.productName.setText("")
         self.productName.setMaxLength(50)
+        self.productName.setClearButtonEnabled(True)
         self.productName.setObjectName("productName")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.productName)
         self.label_2 = QtWidgets.QLabel(Dialog)
@@ -97,6 +100,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label_1.setText(_translate("Dialog", "Название:"))
+        self.productName.setPlaceholderText(_translate("Dialog", "Наименование продукта"))
         self.label_2.setText(_translate("Dialog", "Калорийность:"))
         self.label_3.setText(_translate("Dialog", "Белки:"))
         self.label_4.setText(_translate("Dialog", "Жиры:"))

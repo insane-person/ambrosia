@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication, QDialog
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp, QCoreApplication
 from addProductDialog import Ui_Dialog
-
+from dataBase import *
 
 class AddProduct(QDialog, Ui_Dialog):
     def __init__(self, product_name, **kwargs):

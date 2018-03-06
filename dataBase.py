@@ -7,18 +7,18 @@ db.bind(provider='sqlite', filename='ambrosia.sqlite', create_db=True)
 
 
 class Product(db.Entity):
-    name = PrimaryKey(str)
+    name = Required(str, unique=True)
     calories = Required(Decimal, default=0)
     proteins = Required(Decimal, default=0)
     fats = Required(Decimal, default=0)
     carbohydrates = Required(Decimal, default=0)
-    weightOfPack = Required(Decimal)
-    weightOfPiece = Required(Decimal)
+    weightOfPack = Required(Decimal, default=0)
+    weightOfPiece = Required(Decimal, default=0)
     dish = Set("ProductInDish")
 
 
 class Dish(db.Entity):
-    name = PrimaryKey(str)
+    name = Required(str)
     products = Set("ProductInDish")
 
 
@@ -67,6 +67,7 @@ def add_dish(name, **kwargs):
     else:
         d.set(**kwargs)
 
+
 @db_session
 def remove_dish(name):
     d = Dish.get(name=name)
@@ -104,7 +105,18 @@ def print_product_in_dishes():
     print(select(p for p in ProductInDish).show())
 
 
+@db_session
+def test_queries():
+    foo = Product[1].to_dict()
+    print(foo)
+    foo = Product.select()[:]
+    print(foo)
+
+
 if __name__ == "__main__":
+    add_product("соль")
+    add_product("сахар", calories=1.02, proteins=1.1, fats=2, carbohydrates=3, weightOfPack=4, weightOfPiece=5)
+
     print("\nтаблица продуктов:")
     print_products()
 
@@ -113,4 +125,9 @@ if __name__ == "__main__":
 
     print("\nтаблица состава:")
     print_product_in_dishes()
+
+    test_queries()
+
+
+
 
