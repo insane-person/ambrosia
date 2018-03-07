@@ -107,9 +107,11 @@ def print_product_in_dishes():
 
 @db_session
 def test_queries():
+    print("0")
     foo = Product[1].to_dict()
     print(foo)
-    foo = Product.select()[:]
+    print("1")
+    foo = [p.to_dict() for p in Product.select()]
     print(foo)
 
 

@@ -5,8 +5,11 @@ from PyQt5.QtCore import QRegExp, QCoreApplication
 from addProductDialog import Ui_Dialog
 from dataBase import *
 
+
 class AddProduct(QDialog, Ui_Dialog):
-    def __init__(self, product_name, **kwargs):
+
+    @db_session
+    def __init__(self, id=None):
         QDialog.__init__(self)
         self.setupUi(self)
         self.setWindowTitle("Редактирование продукта")
@@ -26,37 +29,72 @@ class AddProduct(QDialog, Ui_Dialog):
 
         self.addButton.clicked.connect(self.add_method)
         self.delButton.clicked.connect(self.del_method)
+        self.productName.textChanged.connect(self.change_name_edit_color)
 
-        self.productName.setText(product_name)
-        self.caloricity.setText(str(kwargs.setdefault("caloricity", 0)))
-        self.proteins.setText(str(kwargs.setdefault("proteins", 0)))
-        self.fats.setText(str(kwargs.setdefault("fats", 0)))
-        self.carbohydrate.setText(str(kwargs.setdefault("carbohydrate", 0)))
-        self.weightOfPack.setText(str(kwargs.setdefault("pack_weight", 0)))
-        self.weightOfPeace.setText(str(kwargs.setdefault("weight_peace", 0)))
+        self.caloricity.setText(str(0))
+        self.proteins.setText(str(0))
+        self.fats.setText(str(0))
+        self.carbohydrate.setText(str(0))
+        self.weightOfPack.setText(str(0))
+        self.weightOfPeace.setText(str(0))
+
+        self.id = id
+
+        if id is not None:
+            product = Product[id]
+
+            if product is not None:
+                    self.productName.setText(product.name)
+                    self.caloricity.setText(str(product.calories))
+                    self.proteins.setText(str(product.proteins))
+                    self.fats.setText(str(product.fats))
+                    self.carbohydrate.setText(str(product.carbohydrates))
+                    self.weightOfPack.setText(str(product.weightOfPack))
+                    self.weightOfPeace.setText(str(product.weightOfPiece))
 
         self.show()
 
-    @staticmethod
+    def change_name_edit_color(self):
+        self.productName.setStyleSheet("background-color: white")
+
     def add_method(self):
-        print('slot method called.')
-
-        check = False
-        if check == True:
-            print(1)
+        if len(self.productName.text()) == 0:
+            self.productName.setStyleSheet("background-color: pink")
         else:
-            QCoreApplication.instance().quit()
+            if len(self.caloricity.text()) == 0:
+                self.caloricity.setText(str(0))
+
+            if len(self.proteins.text()) == 0:
+                self.proteins.setText(str(0))
+
+            if len(self.fats.text()) == 0:
+                self.fats.setText(str(0))
+
+            if len(self.carbohydrate.text()) == 0:
+                self.carbohydrate.setText(str(0))
+
+            if len(self.weightOfPack.text()) == 0:
+                self.weightOfPack.setText(str(0))
+
+            if len(self.weightOfPeace.text()) == 0:
+                self.weightOfPeace.setText(str(0))
+
+            try:
+                Product[self.id].name = self.productName.text()
+            except:
+                print("foo")
 
 
-    @staticmethod
+        # QCoreApplication.instance().quit()
+
     def del_method(self):
-
         print('slot method called.')
+        # Order[123].delete()
         # Это пока костыль, что бы закрыть окошко после удаления
         QCoreApplication.instance().quit()
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    main_window = AddProduct("Щиии", caloricity=22, proteins=33, weight_peace=35)
+    main_window = AddProduct(2)
     sys.exit(app.exec_())
